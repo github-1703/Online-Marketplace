@@ -18,7 +18,7 @@
               <li>
                 <a
                   class="text-gray-500 transition hover:text-gray-500/75"
-                  href="#"
+                  href="{% url 'homepage:index' %}"
                 >
                   Puddle
                 </a>
@@ -87,7 +87,7 @@
     </header>
 
     <div class="px-16 py-16">
-      <h1>Welcome TO</h1>
+      
       {% block content %} {% endblock %}
     </div>
 
@@ -111,7 +111,7 @@
 
         <ul class="mt-6 space-y-4 text-sm">
           <li>
-            <a href="{% url 'contact_page' %}" class="text-gray-700 transition hover:opacity-75"> Contact </a>
+            <a href="{% url 'homepage:contact_page' %}" class="text-gray-700 transition hover:opacity-75"> Contact </a>
           </li>
 
           <li>

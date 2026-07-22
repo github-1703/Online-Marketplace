@@ -1,16 +1,37 @@
-{% extends "core/base.html" %} {% block title %}Index{% endblock %}
-
+{% extends "core/base.html" %}
+{% block title %}{{item.name}}{% endblock %}
 {% block content %}
 
-<div class="mt-6 px-6 py-6 bg-gray-100 rounded-xl">
-  <h2 class="mb-2 text-2xl text-center">Newest Item</h2>
+<div class="flex gap-6 items-start">
+  <img src="{{ item.image.url }}" class="rounded-xl w-128 h-64 object-cover" />
 
-  {% comment %} creating a card {% endcomment %}
+
+
+  <div class="col-span-2 p-24 bg-gray-100 rounded-xl">
+    <h1 class="text-2xl font-semibold mb-6">{{ item.name }}</h1>
+    <p class="text-gray-500"> <strong>Price:</strong>{{item.price}}</p>
+    <p class="text-gray-500"> <strong>Seller:</strong>{{item.created_by.username}}</p>
+    {% if item.description %}
+    <p class="text-gray-700"> <strong>Description:</strong><br>{{item.description}}</p>
+    {% endif %}
+    <br>
+    <a href="#" title="Get quote now"
+      class="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 hover:bg-gray-800 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+      role="button">Contact Seller
+    </a>
+  </div>
+
+</div>
+
+
+
+<div class="mt-6 px-6 py-6 bg-gray-100 rounded-xl">
+  <h2 class="mb-2 text-2xl text-center">Related Iems</h2>
 
   <div class="grid grid-cols-3 gap-3">
-    {% for item in items %}
+    {% for related in related_items %}
 
-    <a href="{% url 'itemss:detail' item.pk %}" class="group relative block overflow-hidden">
+    <a href="{% url 'itemss:detail' related.pk %}" class="group relative block overflow-hidden">
       <button
         class="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75"
       >
@@ -34,19 +55,19 @@
       </button>
 
       <img
-        src="{{ item.image.url }}"
+        src="{{ related.image.url }}"
         alt=""
         class="h-64 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-72"
       />
 
       <div class="relative border border-gray-100 bg-white p-6">
-        <p class="text-gray-700">{{ item.price }}</p>
+        <p class="text-gray-700">{{ related.price }}</p>
 
         <h3 class="mt-1.5 text-lg font-medium text-gray-900">
-          {{ item.name }}
+          {{ related.name }}
         </h3>
 
-        <p class="mt-1.5 line-clamp-3 text-gray-700">{{ item.description }}</p>
+        <p class="mt-1.5 line-clamp-3 text-gray-700">{{ related.description }}</p>
 
         <form class="mt-4 flex gap-4">
           <button
@@ -68,23 +89,4 @@
     {% endfor %}
   </div>
 </div>
-<div class="mt-6 px-6 py-6 bg-gray-100 rounded-xl">
-  <h2 class="mb-2 text-2xl text-center">Categories</h2>
-
-  <div class="grid grid-cols-3 gap-3">
-  {% for cat in category %}
-  <div class="relative border border-gray-100 bg-white p-6">
-    {{ cat.name }}
-
-    <div class="bg-white p-6 text-gray-700">
-      {{ cat.items.count }} items
-    </div>
-  </div>
-
-
-
-
-  {% endfor %}
-</div></div>
-
 {% endblock %}
