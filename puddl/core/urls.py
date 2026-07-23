@@ -7,4 +7,5 @@ app_name='homepage'
 urlpatterns=[
     path('',views.index,name='index'),
     path('contacts/',views.contacts,name='contact_page'),
+    path('signup/',views.signup,name='signup')
 ]
