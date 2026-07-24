@@ -16,8 +16,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_URL='/accounts/profile/'
+LOGIN_REDIRECT_URL='/'#app name
+LOGOUT_REDIRECT_URL='/'
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',

@@ -1,4 +1,4 @@
-{% extends 'core/base.html' %} {% block title %}Signup{% endblock %} 
+{% extends 'core/base.html' %} {% block title %}Login{% endblock %} 
 {% block content %}
 
 <form method="POST">
@@ -6,41 +6,42 @@
 
   <div class="w-1/2 my-6 mx-auto p-6 bg-gray-200 rounded-xl">
     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight">
-      Sign in to your account
+      Login
     </h2>
 
     <div class="mb-3">
       <label for="username" class="inline-block mb-2">Username</label>
       <div>{{form.username}}</div>
     </div>
-
-    <div class="mb-3">
-      <label for="username" class="inline-block mb-2">Email</label>
-      <div>{{form.email}}</div>
-    </div>
+    
     <div class="mb-3">
       <label for="password1" class="inline-block mb-2">Password</label>
-      <div>{{form.password1}}</div>
+      <div>{{form.password}}</div>
     </div>
 
-    <div class="mb-3">
-      <label for="password2" class="inline-block mb-2">Re Enter Password</label>
-      <div>{{form.password2}}</div>
-    </div>
-
-    {% if form.errors or form.non_field_errors %}
-    <div class="mb-3 p-6 bg-red-100 rounded-xl">
-      {% for field in form %} 
-        {{field.errors}} 
+{% comment %} error handaling {% endcomment %}
+  {% if form.errors or form.non_field_errors %}
+  <div class="mb-3 p-6 bg-red-100 rounded-xl">
+    
+    {% for field in form %}
+      {% for error in field.errors %}
+        <p class="text-red-600">{{ error }}</p>
       {% endfor %}
-      {{field.non_field_errors}}
-    </div>
-    {% endif %}
+    {% endfor %}
+
+    {% for error in form.non_field_errors %}
+      <p class="text-red-600">{{ error }}</p>
+    {% endfor %}
+
+  </div>
+{% endif %}
+
+
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"></div>
 
     <button type="submit" class="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-      Sign Up
+      Login
   </div>
 
   
